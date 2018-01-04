@@ -1,101 +1,24 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
+%python
+import numpy as np
+import pandas
+import math
+import plotly 
+from plotly.graph_objs import Scatter, Layout
+import datetime
+#funtion to import a plotly graph
+def plot(plot_dic, height=300, width=1000, **kwargs):
+    kwargs['output_type'] = 'div'
+    plot_str = plotly.offline.plot(plot_dic, filename='multiple-axes-double', **kwargs)
+    print('%%angular <div style="height: %ipx; width: %spx"> %s </div>' % (height, width, plot_str))
+#function to converter dates in    
+def date2str(dt):
+    return  str(dt.year)+'-'+str(dt.month)+'-'+str(dt.day)
 
-# C extensions
-*.so
-
-# Distribution / packaging
-.Python
-env/
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
-
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-.hypothesis/
-
-# Translations
-*.mo
-*.pot
-
-# Django stuff:
-*.log
-local_settings.py
-
-# Flask stuff:
-instance/
-.webassets-cache
-
-# Scrapy stuff:
-.scrapy
-
-# Sphinx documentation
-docs/_build/
-
-# PyBuilder
-target/
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# pyenv
-.python-version
-
-# celery beat schedule file
-celerybeat-schedule
-
-# SageMath parsed files
-*.sage.py
-
-# dotenv
-.env
-
-# virtualenv
-.venv
-venv/
-ENV/
-
-# Spyder project settings
-.spyderproject
-.spyproject
-
-# Rope project settings
-.ropeproject
-
-# mkdocs documentation
-/site
-
-# mypy
-.mypy_cache/
+resultado.fecha=[datetime.date(2014, 2, 1), datetime.date(2014, 3, 1), datetime.date(2014, 4, 1), datetime.date(2014, 5, 1), datetime.date(2014, 6, 1), datetime.date(2014, 7, 1), datetime.date(2014, 8, 1), datetime.date(2014, 9, 1), datetime.date(2014, 10, 1), datetime.date(2014, 11, 1), datetime.date(2014, 12, 1), datetime.date(2015, 2, 1), datetime.date(2015, 3, 1), datetime.date(2015, 4, 1), datetime.date(2015, 5, 1), datetime.date(2015, 6, 1), datetime.date(2015, 7, 1), datetime.date(2015, 8, 1), datetime.date(2015, 9, 1), datetime.date(2015, 10, 1), datetime.date(2015, 11, 1), datetime.date(2015, 12, 1), datetime.date(2016, 2, 1), datetime.date(2016, 3, 1), datetime.date(2016, 4, 1), datetime.date(2016, 5, 1), datetime.date(2016, 6, 1), datetime.date(2016, 7, 1), datetime.date(2016, 8, 1), datetime.date(2016, 9, 1), datetime.date(2016, 10, 1), datetime.date(2016, 11, 1), datetime.date(2016, 12, 1), datetime.date(2017, 2, 1), datetime.date(2017, 3, 1), datetime.date(2017, 4, 1), datetime.date(2017, 5, 1), datetime.date(2017, 6, 1), datetime.date(2017, 7, 1), datetime.date(2017, 8, 1), datetime.date(2017, 9, 1), datetime.date(2017, 10, 1), datetime.date(2017, 11, 1), datetime.date(2017, 12, 1)]
+resultado.portrans=[-33.33333333333333, 27.77777777777777, 69.56521739130434, 10.256410256410263, -9.302325581395351, -61.53846153846154, 133.33333333333334, -57.142857142857146, 80.0, -18.51851851851852, 0.0, 33.33333333333334, 50.0, 2.7777777777777715, 62.16216216216216, -41.666666666666664, 54.28571428571428, 1.8518518518518476, 34.54545454545453, -35.13513513513513, 43.75, 36.231884057971, 1.2195121951219505, 10.843373493975903, -38.04347826086956, -22.807017543859644, 125.0, -21.212121212121218, -44.87179487179487, -34.883720930232556, -96.42857142857143, 3100.0, -31.25, -72.54901960784314, 235.71428571428572, -36.170212765957444, 13.333333333333329, -2.941176470588232, 33.33333333333334, -50.0, 13.63636363636364, 32.0, 9.090909090909093, -83.33333333333333]
+for line in resultado:
+    c1.append(date2str(line.fecha))
+    c2.append(line.portrans)
+trace1=Scatter(x=c1,y=c2,name="Variacion de Transacciones mensuales")
+layout=Layout(title="Transacciones")
+plot({"data":[trace1],"layout":layout})
